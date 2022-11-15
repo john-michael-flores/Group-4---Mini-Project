@@ -4,6 +4,8 @@ import com.miniproject.group4.exception.RecordNotFoundException;
 import com.miniproject.group4.model.Payroll;
 import com.miniproject.group4.service.PayrollService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +20,8 @@ public class PayrollController {
     private PayrollService payrollService;
 
     @GetMapping
-    public ResponseEntity<List<Payroll>> getAllPayroll(){
-        return new ResponseEntity<>(payrollService.getAllPayroll(), HttpStatus.OK);
+    public ResponseEntity<Page<Payroll>> getAllPayroll(Pageable pageable){
+        return new ResponseEntity<>(payrollService.getAllPayroll(pageable), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

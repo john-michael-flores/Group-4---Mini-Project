@@ -4,11 +4,10 @@ import com.miniproject.group4.exception.RecordNotFoundException;
 import com.miniproject.group4.model.Payroll;
 import com.miniproject.group4.repository.PayrollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @Service
 public class PayrollServiceImpl implements PayrollService {
@@ -28,8 +27,8 @@ public class PayrollServiceImpl implements PayrollService {
     }
 
     @Override
-    public List<Payroll> getAllPayroll() {
-        return payrollRepository.findAll();
+    public Page<Payroll> getAllPayroll(Pageable pageable) {
+        return payrollRepository.findAll(pageable);
     }
 
     @Override
