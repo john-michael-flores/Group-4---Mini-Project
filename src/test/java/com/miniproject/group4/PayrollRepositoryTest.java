@@ -48,7 +48,7 @@ class PayrollRepositoryTest {
     @DisplayName("" +
             "Given interface PayrollRepository  " +
             "When testFindById() is executed, payroll1 should be save to database " +
-            "Then result should return payroll1")
+            "Then result will return payroll1")
     public void testFindById() {
         //ARRANGE
         Payroll expected = new Payroll(1L,"Name", new BigDecimal(50000), new BigDecimal(1500), PayrollTypes.RANK_AND_FILE);
@@ -64,7 +64,7 @@ class PayrollRepositoryTest {
     @DisplayName("" +
             "Given Payroll with the setup above " +
             "When testSave() is executed, payroll2 should be save to database " +
-            "Then result will should return payroll2")
+            "Then result will return payroll2")
     public void testSave() {
         //ARRANGE
         Payroll expected = new Payroll(2L,"Name", new BigDecimal(50000), new BigDecimal(1500), PayrollTypes.RANK_AND_FILE);
@@ -78,7 +78,7 @@ class PayrollRepositoryTest {
     @DisplayName("" +
             "Given Payroll with the setup above " +
             "When testDelete() is executed, payroll3 should be save to database " +
-            "Then result payroll2 should be deleted and will return Optional.empty()")
+            "Then result payroll3 should be deleted and will return Optional.empty()")
     public void testDelete() {
         //ARRANGE
         Payroll expected = new Payroll(3L,"Name", new BigDecimal(50000), new BigDecimal(1500), PayrollTypes.RANK_AND_FILE);
