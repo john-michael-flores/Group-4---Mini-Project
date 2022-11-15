@@ -47,8 +47,8 @@ public class PayrollControllerTest {
 
         payroll2 = new Payroll();
         payroll2.setName("Itachi");
-        payroll2.setBasicPay(BigDecimal.valueOf(23000d));
-        payroll2.setAllowances(BigDecimal.valueOf(5080d));
+        payroll2.setBasicPay(BigDecimal.valueOf(23000));
+        payroll2.setAllowances(BigDecimal.valueOf(5080));
         payroll2.setType(PayrollTypes.MANAGERIAL);
     }
 
@@ -63,8 +63,8 @@ public class PayrollControllerTest {
                         .content(objectMapper.writeValueAsString(payroll1)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", CoreMatchers.is(payroll1.getName())))
-                .andExpect(jsonPath("$.basicPay", CoreMatchers.is(payroll1.getBasicPay())))
-                .andExpect(jsonPath("$.allowances", CoreMatchers.is(payroll1.getAllowances())))
+                .andExpect(jsonPath("$.basicPay", CoreMatchers.is(payroll1.getBasicPay().intValue())))
+                .andExpect(jsonPath("$.allowances", CoreMatchers.is(payroll1.getAllowances().intValue())))
                 .andExpect(jsonPath("$.type", CoreMatchers.is(payroll1.getType().name())));
 
     }
@@ -98,7 +98,7 @@ public class PayrollControllerTest {
     @Test
     void updatePayroll() throws Exception {
         //Arrange
-        payroll2.setAllowances(BigDecimal.valueOf(7090d));
+        payroll2.setAllowances(BigDecimal.valueOf(7090));
         when(payrollService.updatePayroll(any(Payroll.class), anyLong())).thenReturn(payroll2);
 
         //Act
@@ -106,7 +106,7 @@ public class PayrollControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(payroll2)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.allowances", CoreMatchers.is(payroll2.getAllowances())));
+                .andExpect(jsonPath("$.allowances", CoreMatchers.is(payroll2.getAllowances().intValue())));
     }
 
     @Test
