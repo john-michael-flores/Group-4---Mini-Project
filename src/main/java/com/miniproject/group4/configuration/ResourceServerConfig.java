@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHand
 
 @Configuration
 @EnableResourceServer
-public class ResourceServerConfig extends ResourceServerConfigurerAdapter  {
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private static final String RESOURCE_ID = "resource_id";
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
@@ -29,5 +29,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter  {
                 .mvcMatchers(HttpMethod.DELETE, "/payrolls/{id}").hasRole("ADMIN")
                 .anyRequest().denyAll()
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+        http.headers().frameOptions().disable();
     }
 }

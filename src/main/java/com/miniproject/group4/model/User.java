@@ -1,5 +1,4 @@
-package com.miniproject.group4.model;
-
+package com.miniproj
 import com.miniproject.group4.enums.UserTypes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
