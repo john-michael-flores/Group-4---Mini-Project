@@ -78,7 +78,7 @@ class PayrollRepositoryTest {
     @DisplayName("" +
             "Given Payroll with the setup above " +
             "When testDelete() is executed, payroll3 should be save to database " +
-            "Then result payroll2 should be deleted and will return Optional.empty()")
+            "Then result payroll3 should be deleted and will return Optional.empty()")
     public void testDelete() {
         //ARRANGE
         Payroll expected = new Payroll(3L,"Name", new BigDecimal(50000), new BigDecimal(1500), PayrollTypes.RANK_AND_FILE);
