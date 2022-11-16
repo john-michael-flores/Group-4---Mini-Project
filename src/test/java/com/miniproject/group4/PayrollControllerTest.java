@@ -118,7 +118,7 @@ public class PayrollControllerTest {
             "Then response should return json of updated payroll2")
     void updatePayroll() throws Exception {
         //Arrange
-        payroll2.setAllowances(BigDecimal.valueOf(7090d));
+        payroll2.setAllowances(BigDecimal.valueOf(7090));
         when(payrollService.updatePayroll(any(Payroll.class), anyLong())).thenReturn(payroll2);
 
         //Act
@@ -126,7 +126,7 @@ public class PayrollControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(payroll2)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.allowances", CoreMatchers.is(payroll2.getAllowances().doubleValue())));
+                .andExpect(jsonPath("$.allowances", CoreMatchers.is(payroll2.getAllowances().intValue())));
     }
 
     @Test
