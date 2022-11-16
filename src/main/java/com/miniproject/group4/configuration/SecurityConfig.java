@@ -1,6 +1,5 @@
 package com.miniproject.group4.configuration;
 
-
 import com.miniproject.group4.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -45,9 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anonymous().disable()
                 .authorizeRequests()
                 .antMatchers("/api-docs/**").permitAll();
-
-//        http.headers().frameOptions().sameOrigin();
-
+        http.headers().frameOptions().disable();
     }
 
     @Bean

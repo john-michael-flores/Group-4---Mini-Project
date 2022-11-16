@@ -1,6 +1,7 @@
 package com.miniproject.group4.configuration;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -19,11 +20,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.
-                anonymous().disable()
+                anonymous()
+                .disable()
                 .authorizeRequests()
-                .antMatchers("/payrolls/**").access("hasRole('ADMIN')")
+                .mvcMatchers(HttpMethod.GET, "/payrolls/**").hasAnyRole("ADMIN", "USER")
+                .mvcMatchers(HttpMethod.POST, "/payrolls").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.PUT, "/payrolls/{id}").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.DELETE, "/payrolls/{id}").hasRole("ADMIN")
+                .anyRequest().denyAll()
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
-        http.csrf().disable();
         http.headers().frameOptions().disable();
     }
 }

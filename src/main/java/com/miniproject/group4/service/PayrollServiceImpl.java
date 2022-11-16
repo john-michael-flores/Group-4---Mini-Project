@@ -1,5 +1,6 @@
 package com.miniproject.group4.service;
 
+import com.miniproject.group4.enums.PayrollTypes;
 import com.miniproject.group4.exception.RecordNotFoundException;
 import com.miniproject.group4.model.Payroll;
 import com.miniproject.group4.repository.PayrollRepository;
@@ -14,6 +15,7 @@ public class PayrollServiceImpl implements PayrollService {
 
     @Autowired
     private PayrollRepository payrollRepository;
+
 
     @Override
     public Payroll getPayrollById(Long id) throws RecordNotFoundException {
@@ -47,5 +49,13 @@ public class PayrollServiceImpl implements PayrollService {
         Payroll payroll = payrollRepository.findById(id)
                 .orElseThrow(()-> new RecordNotFoundException("Payroll not found."));
         payrollRepository.delete(payroll);
+    }
+
+    @Override
+    public Page<Payroll> findByPayrollType(PayrollTypes type, Pageable pageable) {
+        return new PageImpl<>(payrollRepository.findAll(pageable)
+                .stream()
+                .filter(payroll -> payroll.getType().equals(type))
+                .toList());
     }
 }

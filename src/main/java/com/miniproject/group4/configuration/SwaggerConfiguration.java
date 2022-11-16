@@ -23,7 +23,7 @@ public class SwaggerConfiguration {
         "Some custom description of API.",
         "1.0",
         "Terms of service",
-        new Contact("Jim Corpuz", "", "JanIanmichael.Corpuz@softvision.com"),
+        new Contact("Group 4", "", "Group 4@softvision.com"),
         "License of API",
         "API license URL",
         Collections.emptyList());

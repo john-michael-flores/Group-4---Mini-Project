@@ -14,7 +14,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter  {
     static final String CLIENT_ID = "devglan-client"; // username
     static final String CLIENT_SECRET = "$2a$04$e/c1/RfsWuThaWFCrcCuJeoyvwCV0URN/6Pn9ZFlrtIWaU/vj/BfG"; //password
     static final String GRANT_TYPE_PASSWORD = "password";
@@ -49,8 +49,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret(CLIENT_SECRET)
                 .authorizedGrantTypes(GRANT_TYPE_PASSWORD, AUTHORIZATION_CODE, REFRESH_TOKEN, IMPLICIT )
                 .scopes(SCOPE_READ, SCOPE_WRITE, TRUST)
-                .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS).
-                refreshTokenValiditySeconds(REFRESH_TOKEN_VALIDITY_SECONDS);
+                .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)
+                .refreshTokenValiditySeconds(REFRESH_TOKEN_VALIDITY_SECONDS);
     }
 
     @Override

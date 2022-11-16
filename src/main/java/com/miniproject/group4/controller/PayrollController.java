@@ -1,5 +1,6 @@
 package com.miniproject.group4.controller;
 
+import com.miniproject.group4.enums.PayrollTypes;
 import com.miniproject.group4.exception.RecordNotFoundException;
 import com.miniproject.group4.model.Payroll;
 import com.miniproject.group4.service.PayrollService;
@@ -28,6 +29,11 @@ public class PayrollController {
     public ResponseEntity<Payroll> getPayrollById(@PathVariable Long id) throws RecordNotFoundException {
         return new ResponseEntity<>(payrollService.getPayrollById(id), HttpStatus.OK);
 
+    }
+
+    @GetMapping("/payrolltype/{type}")
+    public ResponseEntity<Page<Payroll>> getPayrollByType(@PathVariable PayrollTypes type, Pageable pageable){
+        return new ResponseEntity<>(payrollService.findByPayrollType(type, pageable), HttpStatus.OK);
     }
 
     @PostMapping

@@ -14,12 +14,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class Payroll {
 
-    /*
-    - Name - String
-    - Basic Pay - Numeric
-    - Allowances - Numeric
-    - Type (Rank and File, Managerial) - String
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
