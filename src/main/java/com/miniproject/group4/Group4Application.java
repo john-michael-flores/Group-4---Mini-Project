@@ -1,5 +1,6 @@
 package com.miniproject.group4;
 
+import com.miniproject.group4.enums.Message;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
