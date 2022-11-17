@@ -232,7 +232,7 @@ public class PayrollControllerTest {
     @DisplayName("" +
             "Given a delete request with mapping of /payrolls/1," +
             "When payrollController execute payrollService.deletePayroll() " +
-            "Then response should response of 204")
+            "Then response should response of 200")
     void deletePayroll() throws Exception {
         //Arrange
         final String accessToken = getAccessToken("Dondon", "password");

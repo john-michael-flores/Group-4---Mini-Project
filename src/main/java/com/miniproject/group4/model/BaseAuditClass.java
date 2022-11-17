@@ -1,6 +1,9 @@
 package com.miniproject.group4.model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -14,6 +17,9 @@ import java.util.Date;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class BaseAuditClass {
 
     @CreatedBy
@@ -32,35 +38,35 @@ public abstract class BaseAuditClass {
     @Column(name = "last_modified_date")
     private Date lastModifiedDate;
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public String getLastModifiedBy() {
-        return lastModifiedBy;
-    }
-
-    public void setLastModifiedBy(String lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
+//    public String getCreatedBy() {
+//        return createdBy;
+//    }
+//
+//    public void setCreatedBy(String createdBy) {
+//        this.createdBy = createdBy;
+//    }
+//
+//    public Date getCreatedDate() {
+//        return createdDate;
+//    }
+//
+//    public void setCreatedDate(Date createdDate) {
+//        this.createdDate = createdDate;
+//    }
+//
+//    public String getLastModifiedBy() {
+//        return lastModifiedBy;
+//    }
+//
+//    public void setLastModifiedBy(String lastModifiedBy) {
+//        this.lastModifiedBy = lastModifiedBy;
+//    }
+//
+//    public Date getLastModifiedDate() {
+//        return lastModifiedDate;
+//    }
+//
+//    public void setLastModifiedDate(Date lastModifiedDate) {
+//        this.lastModifiedDate = lastModifiedDate;
+//    }
 }

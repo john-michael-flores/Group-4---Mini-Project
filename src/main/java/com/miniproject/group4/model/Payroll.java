@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Payroll {
+public class Payroll extends BaseAuditClass{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
