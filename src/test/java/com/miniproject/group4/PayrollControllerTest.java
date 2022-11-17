@@ -143,7 +143,7 @@ public class PayrollControllerTest {
                         .header("Authorization", "Bearer " + accessToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(payroll1)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.name", CoreMatchers.is(payroll1.getName())))
                 .andExpect(jsonPath("$.basicPay", CoreMatchers.is(payroll1.getBasicPay().intValue())))
                 .andExpect(jsonPath("$.allowances", CoreMatchers.is(payroll1.getAllowances().intValue())))
