@@ -44,11 +44,17 @@ class PayrollServiceImplTest {
         allPayroll = List.of(payroll1, payroll2, payroll3, payroll4, payroll5);
     }
 
+
+    //payroll1(1L, "Dondon", new BigDecimal(30000), new BigDecimal(1500), PayrollTypes.MANAGERIAL);
+    //payroll2(2L, "Michael", new BigDecimal(50000), new BigDecimal(2500), PayrollTypes.RANK_AND_FILE);
+    //payroll3(3L, "Vonn", new BigDecimal(40000), new BigDecimal(2500), PayrollTypes.RANK_AND_FILE);
+    //payroll4(4L, "Marvin", new BigDecimal(60000), new BigDecimal(3500), PayrollTypes.MANAGERIAL);
+    //payroll5(5L, "Ali", new BigDecimal(45000), new BigDecimal(2500), PayrollTypes.RANK_AND_FILE);
     @Test
     @DisplayName("" +
-            "Given " +
-            "When " +
-            "Then ")
+            "Given Payroll with the setup above " +
+            "When getPayrollById(Long) is executed " +
+            "Then result should return payroll2")
     public void getPayrollById() throws RecordNotFoundException {
         //ARRANGE
         when(payrollRepository.findById(anyLong())).thenReturn(Optional.ofNullable(payroll2));

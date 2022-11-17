@@ -1,5 +1,6 @@
 package com.miniproject.group4.service;
 
+import com.miniproject.group4.enums.Message;
 import com.miniproject.group4.enums.PayrollTypes;
 import com.miniproject.group4.exception.RecordNotFoundException;
 import com.miniproject.group4.model.Payroll;
@@ -20,7 +21,7 @@ public class PayrollServiceImpl implements PayrollService {
     @Override
     public Payroll getPayrollById(Long id) throws RecordNotFoundException {
         return payrollRepository.findById(id)
-                .orElseThrow(()-> new RecordNotFoundException("Payroll not found."));
+                .orElseThrow(()-> new RecordNotFoundException(Message.PAYROLL.toString()));
     }
 
     @Override
@@ -36,7 +37,7 @@ public class PayrollServiceImpl implements PayrollService {
     @Override
     public Payroll updatePayroll(Payroll payroll, Long id) throws RecordNotFoundException {
         Payroll payrollObj = payrollRepository.findById(id)
-                .orElseThrow(() -> new RecordNotFoundException("Payroll not found."));
+                .orElseThrow(() -> new RecordNotFoundException(Message.PAYROLL.toString()));
         payrollObj.setName(payroll.getName());
         payrollObj.setBasicPay(payroll.getBasicPay());
         payrollObj.setAllowances(payroll.getAllowances());
@@ -47,7 +48,7 @@ public class PayrollServiceImpl implements PayrollService {
     @Override
     public void deletePayroll(Long id) throws RecordNotFoundException {
         Payroll payroll = payrollRepository.findById(id)
-                .orElseThrow(()-> new RecordNotFoundException("Payroll not found."));
+                .orElseThrow(()-> new RecordNotFoundException(Message.PAYROLL.toString()));
         payrollRepository.delete(payroll);
     }
 
