@@ -241,6 +241,6 @@ public class PayrollControllerTest {
         mockMvc.perform(delete("/payrolls/{id}", 1L)
                         .header("Authorization", "Bearer " + accessToken)
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+                .andExpect(status().isOk());
     }
 }

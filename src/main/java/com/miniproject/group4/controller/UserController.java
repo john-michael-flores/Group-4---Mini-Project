@@ -1,5 +1,6 @@
 package com.miniproject.group4.controller;
 
+import com.miniproject.group4.enums.Message;
 import com.miniproject.group4.enums.UserRoles;
 import com.miniproject.group4.exception.RecordNotFoundException;
 import com.miniproject.group4.model.User;
@@ -44,6 +45,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUserById(@PathVariable Long id){
-        return new ResponseEntity<>("USER " + id + " is deleted.", HttpStatus.OK);
+        userService.deleteUser(id);
+        return new ResponseEntity<>(Message.USER_DELETE.getMessage().formatted(id), HttpStatus.OK);
     }
 }

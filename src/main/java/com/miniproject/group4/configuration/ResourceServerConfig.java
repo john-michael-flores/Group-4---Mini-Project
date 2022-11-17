@@ -26,8 +26,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter  {
                 anonymous()
                 .disable()
                 .authorizeRequests()
-                .mvcMatchers(HttpMethod.GET, PAYROLL_END_POINT, USER_END_POINT).hasAnyRole(UserRoles.ROLE_ADMIN.toString(), UserRoles.ROLE_USER.toString())
-                .mvcMatchers(PAYROLL_END_POINT, USER_END_POINT).hasRole(UserRoles.ROLE_ADMIN.toString())
+                .mvcMatchers(HttpMethod.GET, PAYROLL_END_POINT, USER_END_POINT).hasAnyRole(UserRoles.ADMIN.toString(), UserRoles.USER.toString())
+                .mvcMatchers(PAYROLL_END_POINT, USER_END_POINT).hasRole(UserRoles.ADMIN.toString())
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
         http.headers().frameOptions().disable();
     }

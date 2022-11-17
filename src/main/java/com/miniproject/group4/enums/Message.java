@@ -2,16 +2,17 @@ package com.miniproject.group4.enums;
 
 public enum Message {
     PAYROLL("Payroll not found!"),
+    PAYROLL_DELETE("Payroll %s has been deleted."),
     USER("User not found!"),
+    USER_DELETE("User %s has been deleted."),
     INVALID_USER("Invalid User");
 
-    private final String message;
+    private String message;
     Message(final String message){
         this.message = message;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
+    public String getMessage(){
+        return message;
     }
 }
