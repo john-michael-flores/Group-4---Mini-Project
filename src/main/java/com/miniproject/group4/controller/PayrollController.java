@@ -1,5 +1,6 @@
 package com.miniproject.group4.controller;
 
+import com.miniproject.group4.enums.Message;
 import com.miniproject.group4.enums.PayrollTypes;
 import com.miniproject.group4.exception.RecordNotFoundException;
 import com.miniproject.group4.model.Payroll;
@@ -45,8 +46,8 @@ public class PayrollController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletePayroll(@PathVariable Long id) throws RecordNotFoundException {
+    public ResponseEntity<String> deletePayroll(@PathVariable Long id) throws RecordNotFoundException {
         payrollService.deletePayroll(id);
-        return ResponseEntity.noContent().build();
+        return new ResponseEntity<>(Message.PAYROLL_DELETE.getMessage().formatted(id), HttpStatus.OK);
     }
 }
