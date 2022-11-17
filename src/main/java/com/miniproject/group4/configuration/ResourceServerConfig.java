@@ -1,6 +1,7 @@
 package com.miniproject.group4.configuration;
 
 import com.miniproject.group4.enums.UserRoles;
+import com.miniproject.group4.handler.CustomAccessDeniedHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

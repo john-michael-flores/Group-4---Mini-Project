@@ -1,7 +1,7 @@
 package com.miniproject.group4.enums;
 
 public enum Message {
-    PAYROLL("Payroll not found!"),
+    PAYROLL_NOT_FOUND("Payroll not found!"),
     PAYROLL_DELETE("Payroll %s has been deleted."),
     USER("User not found!"),
     USER_DELETE("User %s has been deleted."),

@@ -20,6 +20,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class BaseAuditClass {
 
     @CreatedBy
@@ -37,6 +40,5 @@ public abstract class BaseAuditClass {
     @LastModifiedDate
     @Column(name = "last_modified_date")
     private Date lastModifiedDate;
-
 
 }
