@@ -38,7 +38,7 @@ public class PayrollController {
 
     @PostMapping
     public ResponseEntity<Payroll> savePayroll(@RequestBody Payroll payroll){
-        return new ResponseEntity<>(payrollService.savePayroll(payroll), HttpStatus.OK);
+        return new ResponseEntity<>(payrollService.savePayroll(payroll), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
