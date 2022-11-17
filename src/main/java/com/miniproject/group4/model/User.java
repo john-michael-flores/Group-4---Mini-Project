@@ -1,6 +1,6 @@
 package com.miniproject.group4.model;
 
-import com.miniproject.group4.enums.UserTypes;
+import com.miniproject.group4.enums.UserRoles;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +22,5 @@ public class User {
     private String password;
 
     @Enumerated(value = EnumType.STRING)
-    private UserTypes role;
+    private UserRoles role;
 }
