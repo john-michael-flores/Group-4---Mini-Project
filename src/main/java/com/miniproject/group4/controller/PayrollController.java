@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/payrolls")
 public class PayrollController {
@@ -31,7 +29,7 @@ public class PayrollController {
 
     }
 
-    @GetMapping("/payrolltype/{type}")
+    @GetMapping("/type/{type}")
     public ResponseEntity<Page<Payroll>> getPayrollByType(@PathVariable PayrollTypes type, Pageable pageable){
         return new ResponseEntity<>(payrollService.findByPayrollType(type, pageable), HttpStatus.OK);
     }
