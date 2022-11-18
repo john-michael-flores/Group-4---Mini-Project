@@ -26,8 +26,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     static final String TRUST = "trust";
     static final int ACCESS_TOKEN_VALIDITY_SECONDS = 1*60*60; // token validity
     static final int REFRESH_TOKEN_VALIDITY_SECONDS = 6*60*60;
+
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    /**
+     * Creating the accessToken to be store in the server and send to the client
+     */
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
@@ -35,11 +40,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return converter;
     }
 
+    /**
+     * Storing the created accessToken on the server
+     */
     @Bean
     public TokenStore tokenStore() {
         return new JwtTokenStore(accessTokenConverter());
     }
 
+    /**
+     * Configuring the basicAuth details for the username and secret pass by the client.
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
 
@@ -53,6 +64,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .refreshTokenValiditySeconds(REFRESH_TOKEN_VALIDITY_SECONDS);
     }
 
+    /**
+     * Mapping the authenticationManager defined in SecurityConfig.
+     * <br>
+     * Mapping the accessToken defined on the authorizationServerConfig to be sent to the client
+     * <br>
+     * once the verified authentication was sent by the client.
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore())

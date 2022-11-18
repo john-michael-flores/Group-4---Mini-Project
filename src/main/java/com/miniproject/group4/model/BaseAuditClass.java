@@ -20,9 +20,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public abstract class BaseAuditClass {
 
     @CreatedBy

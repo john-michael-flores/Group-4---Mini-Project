@@ -37,6 +37,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(encoder());
     }
 
+    /**
+     * Configuration for http
+     * <br>
+     * Disabling csrf and anonymous access
+     * <br>
+     * Enabling access to h2-console
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -47,11 +54,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
     }
 
+    /**
+     * Encryption method
+     */
     @Bean
     public BCryptPasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Configuring cors
+     */
     @Bean
     public FilterRegistrationBean corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

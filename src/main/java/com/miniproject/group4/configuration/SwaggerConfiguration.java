@@ -19,17 +19,29 @@ public class SwaggerConfiguration {
 
   public static final String AUTHORIZATION_HEADER = "Authorization";
 
+  /**
+   * To be shown in the swagger-ui
+   */
   private ApiInfo apiInfo() {
-    return new ApiInfo("My REST API",
-        "Some custom description of API.",
-        "1.0",
-        "Terms of service",
+    return new ApiInfo("Swagger2 Configuration - Group 4",
+        "Here is our implementation of swagger2 that contains payroll and user controller" +
+                "\nPresented by: " +
+                "\nDean Vonn Angelo Enalpe" +
+                "\nDondon Jeric Co" +
+                "\nJohn Michael Flores",
+        "1.1",
+        "Terms of service: For mini-project presentation",
         new Contact("Group 4", "", "Group 4@domain.com"),
         "License of API",
         "API license URL",
         Collections.emptyList());
   }
 
+  /**
+   * Defining the security config used for swagger.
+   * <br>
+   * As well as defining which controller will be show in the swagger used.
+   */
   @Bean
   public Docket api() {
     return new Docket(DocumentationType.SWAGGER_2)
@@ -38,20 +50,34 @@ public class SwaggerConfiguration {
         .securitySchemes(Arrays.asList(apiKey()))
         .select()
         .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
+        //.apis(RequestHandlerSelectors.basePackage("com.miniproject.group4.controller"))
         .paths(PathSelectors.any())
         .build();
   }
 
+  /**
+   * Defining the apiKey to be used by swagger and how it is pass by the client.
+   */
   private ApiKey apiKey() {
     return new ApiKey("JWT", AUTHORIZATION_HEADER, "header");
   }
 
+  /**
+   * Building the security context of the authorized user.
+   */
   private SecurityContext securityContext() {
     return SecurityContext.builder()
         .securityReferences(defaultAuth())
         .build();
   }
 
+  /**
+   *
+   * Defining the scope the authorized user can access on swagger.
+   * <br>
+   * As well as what kind of token to be used.
+   *
+   */
   List<SecurityReference> defaultAuth() {
     AuthorizationScope authorizationScope
         = new AuthorizationScope("global", "accessEverything");
