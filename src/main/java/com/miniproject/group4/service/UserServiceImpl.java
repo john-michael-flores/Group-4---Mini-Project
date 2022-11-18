@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public User getUserById(Long id) throws RecordNotFoundException {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RecordNotFoundException(Message.USER.toString()));
+                .orElseThrow(() -> new RecordNotFoundException(Message.USER_NOT_FOUND.getMessage().formatted(id)));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public User updateUser(User updateUser, Long id) throws RecordNotFoundException {
         User user = userRepository.findById(id)
-                .orElseThrow(()-> new RecordNotFoundException(Message.USER.toString()));
+                .orElseThrow(()-> new RecordNotFoundException(Message.USER_NOT_FOUND.getMessage().formatted(id)));
         user.setUserName(updateUser.getUserName());
         user.setPassword(new BCryptPasswordEncoder().encode(updateUser.getPassword()));
         user.setRole(updateUser.getRole());
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public void deleteUser(Long id) {
         User user = userRepository.findById(id)
-                        .orElseThrow(() -> new RecoverableDataAccessException(Message.USER.toString()));
+                        .orElseThrow(() -> new RecoverableDataAccessException(Message.USER_NOT_FOUND.getMessage().formatted(id)));
         userRepository.delete(user);
     }
 }

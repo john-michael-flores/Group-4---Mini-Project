@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 
 @Configuration
 @EnableResourceServer
@@ -21,6 +20,17 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter  {
         resources.resourceId(RESOURCE_ID).stateless(false);
     }
 
+    /**
+     * Configuring the HttpSecurity.
+     * <br>
+     * Disabling anonymous access and defining authorized request
+     * <br>
+     * using mvcMatchers and throwing a handler if the user requesting
+     * <br>
+     * access does not have permission.
+     * <br>
+     * Disabling security access to h2-console.
+     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.
@@ -29,7 +39,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter  {
                 .authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, PAYROLL_END_POINT, USER_END_POINT).hasAnyRole(UserRoles.ADMIN.toString(), UserRoles.USER.toString())
                 .mvcMatchers(PAYROLL_END_POINT, USER_END_POINT).hasRole(UserRoles.ADMIN.toString())
-                .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+                .and().exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler());
         http.headers().frameOptions().disable();
     }
 }

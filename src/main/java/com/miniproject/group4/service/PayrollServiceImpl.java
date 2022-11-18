@@ -21,7 +21,7 @@ public class PayrollServiceImpl implements PayrollService {
     @Override
     public Payroll getPayrollById(Long id) throws RecordNotFoundException {
         return payrollRepository.findById(id)
-                .orElseThrow(()-> new RecordNotFoundException(Message.PAYROLL_NOT_FOUND.getMessage()));
+                .orElseThrow(()-> new RecordNotFoundException(Message.PAYROLL_NOT_FOUND.getMessage().formatted(id)));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class PayrollServiceImpl implements PayrollService {
     @Override
     public Payroll updatePayroll(Payroll payroll, Long id) throws RecordNotFoundException {
         Payroll payrollObj = payrollRepository.findById(id)
-                .orElseThrow(() -> new RecordNotFoundException(Message.PAYROLL_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new RecordNotFoundException(Message.PAYROLL_NOT_FOUND.getMessage().formatted(id)));
         payrollObj.setName(payroll.getName());
         payrollObj.setBasicPay(payroll.getBasicPay());
         payrollObj.setAllowances(payroll.getAllowances());
@@ -48,7 +48,7 @@ public class PayrollServiceImpl implements PayrollService {
     @Override
     public void deletePayroll(Long id) throws RecordNotFoundException {
         Payroll payroll = payrollRepository.findById(id)
-                .orElseThrow(()-> new RecordNotFoundException(Message.PAYROLL_NOT_FOUND.getMessage()));
+                .orElseThrow(()-> new RecordNotFoundException(Message.PAYROLL_NOT_FOUND.getMessage().formatted(id)));
         payrollRepository.delete(payroll);
     }
 
