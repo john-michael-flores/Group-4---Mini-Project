@@ -34,8 +34,8 @@ public class UserController {
     }
 
     @GetMapping("/role/{role}")
-    public ResponseEntity<Page<User>> getUserByRole(@PathVariable UserRoles type, Pageable pageable){
-        return new ResponseEntity<>(userService.getUserByRole(type, pageable), HttpStatus.OK);
+    public ResponseEntity<Page<User>> getUserByRole(@PathVariable UserRoles role, Pageable pageable){
+        return new ResponseEntity<>(userService.getUserByRole(role, pageable), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
